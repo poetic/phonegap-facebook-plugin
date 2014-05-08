@@ -404,6 +404,15 @@
      }];
 }
 
+- (void) logEvent:(CDVInvokedUrlCommand*)command
+{
+  NSString *eventName = [command.arguments objectAtIndex:0];
+  NSLog(@"Track FacebookAppEvent: %@", eventName);
+  [FBAppEvents logEvent:eventName];
+  CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+  [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 - (void) makeGraphCall:(NSString *)graphPath
 {
     
