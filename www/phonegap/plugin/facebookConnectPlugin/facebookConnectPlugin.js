@@ -9,32 +9,41 @@
 
 var exec = require("cordova/exec");
 
-var facebookConnectPlugin = { 
-    
-	getLoginStatus: function(s, f) {
-	    cordova.exec(s, f, "FacebookConnectPlugin", "getLoginStatus", []);
-	},
-	    
-	showDialog: function(options, s, f) {
-	    cordova.exec(s, f, "FacebookConnectPlugin", "showDialog", [options]);
-	},
-	    
-	login: function(permissions, s, f) {
-	    cordova.exec(s, f, "FacebookConnectPlugin", "login", permissions);
-	},
-	    
-	getAccessToken: function(s, f) {
-	    cordova.exec(s, f, "FacebookConnectPlugin", "getAccessToken", []);
-	},
-	    
-	logout: function(s, f) {
-	    cordova.exec(s, f, "FacebookConnectPlugin", "logout", []);
-	},
-	
-	api: function(graphPath, permissions, s, f) {
-            cordova.exec(s, f, "FacebookConnectPlugin", "graphApi", [graphPath, permissions]);
-        }
-	    	    
+var facebookConnectPlugin = {
+
+  getLoginStatus: function(s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "getLoginStatus", []);
+  },
+
+  showDialog: function(options, s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "showDialog", [options]);
+  },
+
+  login: function(permissions, s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "login", permissions);
+  },
+
+  getAccessToken: function(s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "getAccessToken", []);
+  },
+
+  logout: function(s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "logout", []);
+  },
+
+  api: function(graphPath, permissions, s, f) {
+    cordova.exec(s, f, "FacebookConnectPlugin", "graphApi", [graphPath, permissions]);
+  },
+
+  logEvent: function(name, parameters, s, f) {
+    if(parameters == null) {
+      parameters = {};
+    }
+    if(!eventName) {
+      throw new Error('You cannot log an event with blank name');
+    }
+    cordova.exec(s, f, "FacebookConnectPlugin", "logEvent", [eventName, parameters]);
+  }
 };
 
 module.exports = facebookConnectPlugin;
