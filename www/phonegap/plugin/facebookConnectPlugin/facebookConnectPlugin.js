@@ -33,8 +33,17 @@ var facebookConnectPlugin = {
 
     api : function (graphPath, permissions, s, f) {
         cordova.exec(s, f, "FacebookConnectPlugin", "graphApi", [graphPath, permissions]);
-    }
+    },
 
+    logEvent: function(name, parameters, s, f) {
+      if(parameters == null) {
+        parameters = {};
+      }
+      if(!eventName) {
+        throw new Error('You cannot log an event with blank name');
+      }
+      cordova.exec(s, f, "FacebookConnectPlugin", "logEvent", [eventName, parameters]);
+    }
 };
 
 module.exports = facebookConnectPlugin;
