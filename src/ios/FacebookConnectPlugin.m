@@ -420,9 +420,13 @@
 
 - (void) logEvent:(CDVInvokedUrlCommand*)command
 {
-  NSString *eventName = [command.arguments objectAtIndex:0];
-  NSLog(@"Track FacebookAppEvent: %@", eventName);
-  [FBAppEvents logEvent:eventName];
+  NSString *eventName      = [command.arguments objectAtIndex:0];
+  NSDictionary *parameters = [command.arguments objectAtIndex:1];
+
+  NSLog(@"FBAppEvents logEvent: %@ parameters: %@", eventName, parameters);
+
+  [FBAppEvents logEvent:eventName parameters:parameters];
+
   CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
   [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
