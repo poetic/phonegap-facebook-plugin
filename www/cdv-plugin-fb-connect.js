@@ -60,9 +60,15 @@ CDV.FB = {
       if (cb) cb(e);
                   }, (fail?fail:null), 'org.apache.cordova.facebook.Connect', 'showDialog', [params] );
   },
-  logEvent: function(name, cb, fail) {
+  logEvent: function(eventName, parameters, cb, fail) {
+    if(parameters == null) {
+      parameters = {};
+    }
+    if(!eventName) {
+      throw new Error('You cannot log an event with blank name');
+    }
     cordova.exec(function(e) {
       if (cb) cb(e);
-    }, (fail?fail:null), 'org.apache.cordova.facebook.Connect', 'logEvent', [name]);
+    }, (fail?fail:null), 'org.apache.cordova.facebook.Connect', 'logEvent', [eventName, parameters]);
   },
 };
