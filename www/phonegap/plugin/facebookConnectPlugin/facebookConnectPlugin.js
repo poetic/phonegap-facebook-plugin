@@ -39,10 +39,10 @@ var facebookConnectPlugin = {
       if(parameters == null) {
         parameters = {};
       }
-      if(!eventName) {
+      if(!name) {
         throw new Error('You cannot log an event with blank name');
       }
-      cordova.exec(s, f, "FacebookConnectPlugin", "logEvent", [eventName, parameters]);
+      cordova.exec(s, f, "FacebookConnectPlugin", "logEvent", [name, parameters]);
     }
 };
 
